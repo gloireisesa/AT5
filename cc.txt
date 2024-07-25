@@ -1,0 +1,42 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+    int j1, m1, a1, j2, m2, a2;
+
+    // Saisie de la première date
+    while (1) {
+        printf("Entrez la première date (jj/mm/aa) : ");
+        if (scanf("%2d/%2d/%4d", &j1, &m1, &a1) == 3) {
+            break;
+        } else {
+            printf("Saisie incorrecte. Veuillez réessayer.\n");
+            // Vider le buffer d'entrée
+            while (getchar() != '\n');
+        }
+    }
+
+    // Saisie de la deuxième date
+    while (1) {
+        printf("Entrez la deuxième date (jj/mm/aa) : ");
+        if (scanf("%2d/%2d/%4d", &j2, &m2, &a2) == 3) {
+            break;
+        } else {
+            printf("Saisie incorrecte. Veuillez réessayer.\n");
+            // Vider le buffer d'entrée
+            while (getchar() != '\n');
+        }
+    }
+
+    // Comparaison des deux dates
+    if ((a1 < a2) || (a1 == a2 && m1 < m2) || (a1 == a2 && m1 == m2 && j1 < j2)) {
+        printf("La première date est antérieure à la deuxième.\n");
+    } else if ((a1 > a2) || (a1 == a2 && m1 > m2) || (a1 == a2 && m1 == m2 && j1 > j2)) {
+        printf("La deuxième date est antérieure à la première.\n");
+    } else {
+        printf("Les deux dates sont identiques.\n");
+    }
+
+    return 0;
+}
