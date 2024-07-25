@@ -21,7 +21,7 @@ public class GestionContacts {
     private void createTablesIfNotExist() throws SQLException {
         String createTableSQL = """
             CREATE TABLE IF NOT EXISTS contacts (
-                id TEXT PRIMARY KEY,
+                id  INT AUTO_INCREMENT PRIMARY KEY,
                 nom TEXT NOT NULL,
                 numero_telephone TEXT NOT NULL,
                 email TEXT NOT NULL,

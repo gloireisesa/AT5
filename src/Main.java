@@ -18,7 +18,8 @@ public class Main {
         try {
             gestionnaire = new GestionContacts();
         } catch (SQLException e) {
-            System.out.println("Erreur de connexion à la base de données: " + e.getMessage());
+//            System.out.println("Erreur de connexion à la base de données: " + e.printStackTrace());
+            e.printStackTrace();
             return;
         }
 
