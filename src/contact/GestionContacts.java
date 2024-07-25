@@ -8,8 +8,13 @@ import java.util.List;
 public class GestionContacts {
     private final Connection connection;
 
-    public GestionContacts(String dbUrl, String dbUser, String dbPassword) throws SQLException {
-        connection = DriverManager.getConnection(dbUrl, dbUser, dbPassword);
+    public GestionContacts() throws SQLException {
+        DatabaseConnection dbConnection = DatabaseConnection.getInstance(
+                "jdbc:mysql://localhost:3306/gestion1", // URL de la base de données MySQL
+                "root", // Nom d'utilisateur MySQL
+                "" // Mot de passe MySQL
+        );
+        this.connection = dbConnection.getConnection();
         createTablesIfNotExist();
     }
 
@@ -180,10 +185,5 @@ public class GestionContacts {
         }
     }
 
-    // Fermeture de la connexion à la base de données
-    public void close() throws SQLException {
-        if (connection != null && !connection.isClosed()) {
-            connection.close();
-        }
-    }
+    // Pas besoin de méthode close ici, la gestion de la connexion est dans DatabaseConnection
 }

@@ -16,9 +16,9 @@ public class Main {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
         try {
-            gestionnaire = new GestionContacts(dbUrl, dbUser, dbPassword);
+            gestionnaire = new GestionContacts();
         } catch (SQLException e) {
-            System.out.println(STR."Erreur de connexion à la base de données: \{e.getMessage()}");
+            System.out.println("Erreur de connexion à la base de données: " + e.getMessage());
             return;
         }
 
@@ -154,7 +154,11 @@ public class Main {
                     case 11:
                         System.out.println("Quitter...");
                         scanner.close();
-                        gestionnaire.close();
+                        try {
+                            DatabaseConnection.getInstance(dbUrl, dbUser, dbPassword).close();
+                        } catch (SQLException e) {
+                            System.out.println("Erreur lors de la fermeture de la connexion: " + e.getMessage());
+                        }
                         return;
 
                     default:
